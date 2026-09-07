@@ -1,0 +1,536 @@
+<title>How Coach Works</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- v1.1 2026-09-07 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#FAF7F3;
+    --surface:#FFFFFF;
+    --surface-2:#F4F1EC;
+    --ink:#27343D;
+    --ink-soft:#53575A;
+    --ink-faint:#8A8D8F;
+    --line:#E2DDD6;
+    --line-strong:#C9C3BA;
+    --orange:#EF8B22;
+    --orange-deep:#CC5500;
+    --orange-wash:#FEF6EC;
+    --blue:#0979C3;
+    --blue-deep:#065E9A;
+    --blue-wash:#EBF4FB;
+    --good:#2E7D5B;
+    --good-wash:#E8F3EE;
+    --stop:#B3402E;
+    --stop-wash:#FBEDEA;
+    --shadow:0 1px 2px rgba(39,52,61,.06), 0 8px 24px rgba(39,52,61,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#171E23;
+      --surface:#1E272D;
+      --surface-2:#252F36;
+      --ink:#EDE9E3;
+      --ink-soft:#B3B9BD;
+      --ink-faint:#848A8E;
+      --line:#333E46;
+      --line-strong:#465158;
+      --orange:#F5A24A;
+      --orange-deep:#F5A24A;
+      --orange-wash:#33261A;
+      --blue:#5AAEE8;
+      --blue-deep:#8CC8F0;
+      --blue-wash:#152833;
+      --good:#5FBF92;
+      --good-wash:#16281F;
+      --stop:#E58876;
+      --stop-wash:#2E1A16;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#171E23;
+    --surface:#1E272D;
+    --surface-2:#252F36;
+    --ink:#EDE9E3;
+    --ink-soft:#B3B9BD;
+    --ink-faint:#848A8E;
+    --line:#333E46;
+    --line-strong:#465158;
+    --orange:#F5A24A;
+    --orange-deep:#F5A24A;
+    --orange-wash:#33261A;
+    --blue:#5AAEE8;
+    --blue-deep:#8CC8F0;
+    --blue-wash:#152833;
+    --good:#5FBF92;
+    --good-wash:#16281F;
+    --stop:#E58876;
+    --stop-wash:#2E1A16;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.28);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"Roboto","Helvetica Neue",Arial,sans-serif;
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px 96px;}
+
+  /* ---------- masthead ---------- */
+  .mast{padding:52px 0 34px;border-bottom:3px solid var(--ink);}
+  .kicker{
+    font-family:"Bebas Neue",Impact,sans-serif;
+    font-size:19px;letter-spacing:.14em;color:var(--orange-deep);
+    margin:0 0 14px;
+  }
+  h1{
+    font-family:"Bebas Neue",Impact,sans-serif;
+    font-size:clamp(58px,13vw,104px);
+    line-height:.9;letter-spacing:.005em;
+    margin:0 0 20px;text-wrap:balance;
+  }
+  .standfirst{
+    font-size:21px;line-height:1.5;color:var(--ink);margin:0 0 8px;max-width:34em;
+  }
+  .standfirst b{color:var(--orange-deep);}
+  .byline{
+    font-family:"Roboto Mono",ui-monospace,monospace;
+    font-size:12.5px;color:var(--ink-faint);margin:22px 0 0;
+    letter-spacing:.02em;
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:44px 0 8px;}
+  section + section{border-top:1px solid var(--line);}
+  h2{
+    font-family:"Bebas Neue",Impact,sans-serif;
+    font-size:36px;line-height:1.06;letter-spacing:.02em;
+    margin:0 0 6px;text-wrap:balance;
+  }
+  .sub{color:var(--ink-soft);font-size:16px;margin:0 0 26px;max-width:36em;}
+  h3{font-size:18px;font-weight:700;margin:30px 0 8px;}
+  p{margin:0 0 16px;max-width:36em;}
+  a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:2px;}
+  a:hover{color:var(--blue-deep);}
+  a:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px;}
+  code{
+    font-family:"Roboto Mono",ui-monospace,monospace;
+    font-size:.87em;background:var(--surface-2);
+    padding:1px 5px;border-radius:3px;color:var(--ink);
+  }
+
+  /* ---------- the plain-language callout ---------- */
+  .plain{
+    background:var(--orange-wash);
+    border-left:4px solid var(--orange);
+    padding:18px 20px;margin:0 0 26px;border-radius:0 6px 6px 0;
+  }
+  .plain p{margin:0;font-size:18px;}
+  .plain .lead{
+    font-family:"Bebas Neue",Impact,sans-serif;
+    font-size:15px;letter-spacing:.12em;color:var(--orange-deep);
+    display:block;margin-bottom:4px;
+  }
+
+  /* ---------- shelf: what's in the playbook ---------- */
+  .shelf{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:0 0 22px;}
+  .shelf-row{
+    background:var(--surface);padding:15px 18px;
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 18px;align-items:baseline;
+  }
+  .shelf-row .what{font-weight:500;}
+  .shelf-row .who{
+    font-family:"Roboto Mono",ui-monospace,monospace;
+    font-size:12px;color:var(--ink-faint);white-space:nowrap;
+  }
+  .shelf-row .src{grid-column:1/-1;font-size:14.5px;color:var(--ink-soft);margin:0;max-width:none;}
+
+  /* ---------- transcript ---------- */
+  .chat{display:flex;flex-direction:column;gap:12px;margin:0 0 8px;}
+  .msg{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:13px 16px;box-shadow:var(--shadow);
+  }
+  .msg.bot{background:var(--blue-wash);border-color:transparent;}
+  .msg .from{
+    font-family:"Roboto Mono",ui-monospace,monospace;
+    font-size:11.5px;letter-spacing:.06em;color:var(--ink-faint);
+    display:block;margin-bottom:5px;text-transform:uppercase;
+  }
+  .msg p{margin:0;font-size:16.5px;}
+  .msg p + p{margin-top:9px;}
+  .move{
+    display:inline-block;margin-top:9px;
+    font-family:"Roboto Mono",ui-monospace,monospace;
+    font-size:11.5px;letter-spacing:.04em;
+    background:var(--good-wash);color:var(--good);
+    padding:3px 8px;border-radius:20px;
+  }
+
+  /* ---------- the loop ---------- */
+  .loop{list-style:none;padding:0;margin:0 0 6px;counter-reset:step;}
+  .loop li{
+    display:grid;grid-template-columns:38px minmax(0,1fr);gap:16px;
+    padding:0 0 22px;position:relative;
+  }
+  .loop li::before{
+    counter-increment:step;content:counter(step);
+    font-family:"Bebas Neue",Impact,sans-serif;font-size:21px;
+    width:38px;height:38px;border-radius:50%;
+    background:var(--ink);color:var(--ground);
+    display:flex;align-items:center;justify-content:center;
+    line-height:1;padding-top:2px;
+  }
+  .loop li:not(:last-child)::after{
+    content:"";position:absolute;left:18.5px;top:38px;bottom:0;
+    width:1px;background:var(--line-strong);
+  }
+  .loop .head{font-weight:700;margin:6px 0 3px;}
+  .loop p{margin:0;font-size:16px;color:var(--ink-soft);}
+  .loop .who-does{
+    font-family:"Roboto Mono",ui-monospace,monospace;
+    font-size:11.5px;letter-spacing:.05em;color:var(--orange-deep);
+    text-transform:uppercase;
+  }
+  .returns{
+    display:grid;grid-template-columns:38px minmax(0,1fr);gap:16px;align-items:center;
+    background:var(--surface-2);border-radius:8px;padding:14px 16px 14px 0;margin-top:2px;
+  }
+  .returns .arrow{
+    font-size:24px;color:var(--orange-deep);text-align:center;line-height:1;
+  }
+  .returns p{margin:0;font-size:16px;}
+
+  /* ---------- decision cards ---------- */
+  .decision{
+    background:var(--surface);border:1px solid var(--line);
+    border-top:4px solid var(--orange);
+    border-radius:8px;padding:22px 24px;margin:0 0 18px;box-shadow:var(--shadow);
+  }
+  .decision h3{margin:0 0 4px;font-size:20px;}
+  .decision .verdict{
+    font-family:"Bebas Neue",Impact,sans-serif;
+    font-size:17px;letter-spacing:.09em;color:var(--good);
+    display:block;margin-bottom:14px;
+  }
+  .decision p:last-child{margin-bottom:0;}
+  .rules{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:9px;}
+  .rules li{
+    display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;
+    font-size:16px;line-height:1.5;
+  }
+  .rules .yes{color:var(--good);font-weight:700;}
+  .rules .no{color:var(--stop);font-weight:700;}
+
+  /* ---------- ladder ---------- */
+  .ladder{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .rung{background:var(--surface);padding:16px 18px;display:grid;gap:5px;}
+  .rung .name{font-weight:700;font-size:17px;}
+  .rung .state{
+    font-family:"Roboto Mono",ui-monospace,monospace;
+    font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+    justify-self:start;padding:2px 8px;border-radius:20px;
+  }
+  .state.live{background:var(--good-wash);color:var(--good);}
+  .state.next{background:var(--orange-wash);color:var(--orange-deep);}
+  .state.later{background:var(--surface-2);color:var(--ink-faint);}
+  .rung p{margin:0;font-size:15.5px;color:var(--ink-soft);max-width:none;}
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:52px;padding-top:22px;border-top:3px solid var(--ink);
+    font-size:14.5px;color:var(--ink-soft);
+  }
+  footer p{max-width:none;}
+
+  @media (max-width:560px){
+    body{font-size:16.5px;}
+    .wrap{padding:0 18px 72px;}
+    .shelf-row{grid-template-columns:minmax(0,1fr);}
+    .shelf-row .who{white-space:normal;}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <p class="kicker">TRAINING CAMP COACHES ROOM</p>
+    <h1>How Coach Works</h1>
+    <p class="standfirst">Coach is Claude, sitting in one Slack channel, reading <b>one folder of documents</b> that we wrote. That folder is the whole brain. Nothing else.</p>
+    <p class="byline">For Cameron · rev. 9/7/2026 pm · day two of the pilot</p>
+  </header>
+
+  <section>
+    <h2>The short version</h2>
+    <div class="plain">
+      <p><span class="lead">IN ONE BREATH</span>Tag <code>@Claude</code> with a question. It opens the playbook, finds the pages that match, and answers you with a date on the answer. If the playbook does not cover it, it says so and tells you who to ask. It never guesses, and it cannot change anything.</p>
+    </div>
+    <p>Think of a binder in the break room. Coach is the guy who has read the whole binder and never gets tired of being asked. He is not allowed to make things up, and he is not allowed to write in the binder. When the binder is wrong, a person fixes the binder.</p>
+    <p>That last part is the whole design. Everything below is about how pages get into the binder, and who is allowed to put them there.</p>
+  </section>
+
+  <section>
+    <h2>What Coach reads</h2>
+    <p class="sub">21 files in a private folder on GitHub called <code>training-camp-kb</code>. Plain English, no code. Every file says who owns it, where it came from, and the date it was last true.</p>
+
+    <div class="shelf">
+      <div class="shelf-row">
+        <span class="what">The theme</span><span class="who">Cameron</span>
+        <p class="src">What Training Camp is, the dates, how a branch is scored, the prizes, and every company announcement since 8/20 in order.</p>
+      </div>
+      <div class="shelf-row">
+        <span class="what">The decisions</span><span class="who">Albert keeps</span>
+        <p class="src">Everything leadership has ruled since kickoff, each one marked with whether it has been announced yet. Plus the open questions, and the running list of things Coach could not answer.</p>
+      </div>
+      <div class="shelf-row">
+        <span class="what">The app</span><span class="who">Mike</span>
+        <p class="src">How the training app works for a mover and for a manager, the full list of every stage and item a mover needs signed, what is broken, and the 11-module manager course copied out of the app itself.</p>
+      </div>
+      <div class="shelf-row">
+        <span class="what">The policies</span><span class="who">Brian · Mike · Anne</span>
+        <p class="src">Training day and signature rules (Brian writes them, Mike owns the slides and how the app enforces them), where trial days stand today (Anne), and the whole Code of Geniuses handbook (Anne).</p>
+      </div>
+      <div class="shelf-row">
+        <span class="what">Coach's own rules</span><span class="who">Cameron</span>
+        <p class="src">The instructions Coach follows, and the table of who owns what.</p>
+      </div>
+    </div>
+
+    <div class="plain" style="margin-top:4px;">
+      <p><span class="lead">PULLED OUT 9/7</span>Promotion and the path to Lead used to be in here. It was a summary of the framework Anne and Paul built, and that framework has not gone to the field yet, with several numbers still not locked. A bot describing an unlaunched promotion ladder to branch managers is exactly the leak we built the status system to prevent. Coach now says promotion is not published and sends people to Anne. It goes back in when Anne rolls it out.</p>
+    </div>
+
+    <p>Most of it came out of things that already existed. Mike's app code and his SOP course. Anne's trial-day page. Brian's onboarding breakdown. The QGR packet. The company handbook. Slack announcements. Nobody wrote a book from scratch.</p>
+
+    <h3>Why the dates matter</h3>
+    <p>Coach reads the folder fresh every single time somebody asks. Change a file at noon and the 12:05 answer uses the new version. There is no training, no memory, no learning. That is on purpose: it means the only way to change what Coach says is to change the playbook, and every change has a name on it.</p>
+  </section>
+
+  <section>
+    <h2>What happened Monday morning</h2>
+    <p class="sub">Mike tested it with a real question nobody had written down. This is the whole loop in one thread.</p>
+
+    <div class="chat">
+      <div class="msg">
+        <span class="from">Mike, 8:05 AM</span>
+        <p>@Claude what do I do with someone that is out on injury for an extended period?</p>
+      </div>
+      <div class="msg bot">
+        <span class="from">Coach, 8:06 AM</span>
+        <p>Take that to Anne or your regional manager today. Anything involving an injury is theirs, not mine.</p>
+        <p>Separate from that, if you want the app-side mechanics, say the word and I'll pull it from the playbook.</p>
+        <span class="move">refused the HR half, offered the half it owns</span>
+      </div>
+      <div class="msg">
+        <span class="from">Mike, 8:07 AM</span>
+        <p>Yeah what do I do in the app to make it clear they wont be making any progress for the time being?</p>
+      </div>
+      <div class="msg bot">
+        <span class="from">Coach, 8:10 AM</span>
+        <p>There's no built-in "pause" state for this. Two things exist, neither is a real fit. [It then explained deactivating, the inactivity lock, and what freezes in the branch tally.]</p>
+        <p>A real "on hold" state isn't documented, that's not in the playbook yet. Since you own app features and locks, that'd be your call.</p>
+        <span class="move">answered what it knew, named the gap, named the owner</span>
+      </div>
+      <div class="msg">
+        <span class="from">Mike, 8:38 AM</span>
+        <p>Can you add an "on hold" section making it clear that if a mover is going to be away for more than a week for any reason they are deactivated to pause their clock.</p>
+      </div>
+      <div class="msg bot">
+        <span class="from">Coach, 8:38 AM</span>
+        <p>That's a decision, not a question, and I don't edit the playbook myself. You'd need to add it yourself. Want me to draft the wording?</p>
+        <span class="move">would not write to the binder, offered to draft</span>
+      </div>
+      <div class="msg">
+        <span class="from">Mike, 8:42 AM, to Cameron</span>
+        <p>Cool that anyone can recommend a change or request an addition to the best practice and claude can clean up the wording. Allows managers asking the question to recommend what they think the answer should be and then leadership approving that change or addition. Great way to keep all of our processes evergreen.</p>
+      </div>
+    </div>
+
+    <p>Thirty-seven minutes from "nobody wrote this down" to a rule that exists. The rule is in the playbook now, marked as decided but not yet announced, so Coach will point people to Mike instead of quoting it until he tells the branch managers.</p>
+  </section>
+
+  <section>
+    <h2>When Coach doesn't know</h2>
+    <p class="sub">This is the part you asked about. Here is exactly what happens, and where you go to see it.</p>
+
+    <p>Coach says <em>"that's not in the playbook yet,"</em> names the person who owns that area, and stops. It does not guess, and it does not write itself a note, because it cannot write anything.</p>
+
+    <p><strong>So I keep the note.</strong> There is now a file called <code>playbook-gaps.md</code>. I read the channel and add one row for every question Coach could not answer: what was asked, what was missing, who owns it, and whether it is closed. Mike, Brian, and Anne each read that one file to see their own backlog. Monday's injury question is the first row, already closed.</p>
+
+    <p>I sweep the channel every morning for the first two weeks, then weekly. A thumbs down on a bad answer gets swept too.</p>
+
+    <h3>Who does Coach tag?</h3>
+    <div class="plain">
+      <p><span class="lead">RULED 9/7</span>When Coach knows the answer, it tags nobody. It just answers. When the playbook does not cover it, it @-mentions the owner right there in the thread, so the person who can close the gap actually sees it. That is the whole rule, and it is live now.</p>
+    </div>
+    <p>The routing table decides who gets the mention. App questions go to Mike. Training day and the Central Texas and Houston branches go to Brian. Hiring, the handbook, trial days, and anything HR go to Anne. Data and systems go to Matisen.</p>
+    <p>Two things never get a mention. A question about a specific mover's performance, pay, discipline or health, which goes to a regional manager or Anne with no ping and no detail. And anything about promotion, which goes to Anne in plain text until the framework is published.</p>
+
+  </section>
+
+  <section>
+    <h2>How an answer gets into the playbook</h2>
+    <p class="sub">Today it takes a human hand at step 4. That is the step the pull request would remove.</p>
+
+    <ol class="loop">
+      <li>
+        <div>
+          <p class="head">Somebody hits a wall</p>
+          <p>A question with no answer in the playbook. <span class="who-does">anybody</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">Coach says so and names the owner</p>
+          <p>The gap goes on my sweep list. <span class="who-does">coach</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">The owner decides what the rule should be</p>
+          <p>Right there in the channel, in their own words. Mike for the app, Brian for training days, Anne for people. <span class="who-does">the owner</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">Coach writes it up properly</p>
+          <p>It turns the ruling into the exact wording for the decisions log and for whichever file needs the new section. <span class="who-does">coach</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">Somebody puts it in the folder</p>
+          <p>Today that means opening the file on GitHub and pasting. <b>This is the step we are removing</b>, see below. What never gets removed is a person approving it. <span class="who-does">a human approves, always</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">It gets a status</p>
+          <p>Decided but not announced means Coach will not quote it yet, it points people to the owner. Once the owner tells the team, the status flips and Coach starts using it. <span class="who-does">the owner</span></p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="returns">
+      <div class="arrow" aria-hidden="true">↺</div>
+      <p>The next person who asks that question gets a real answer, with a date on it. That is the loop. Every gap someone hits makes the playbook permanently better for everyone behind them.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Getting rid of the paste step</h2>
+    <p class="sub">Nobody should have to open GitHub and paste text to fix a sentence. Two ways out, and they are not exclusive.</p>
+
+    <div class="decision">
+      <h3>Option A: Coach files the change itself</h3>
+      <span class="verdict">FEWEST HANDS · NEEDS ONE RULE CHANGED</span>
+      <p>Coach writes the change as a proposal that sits in the folder until somebody approves it. Mike or you tap approve from your phone. Nothing lands without that tap.</p>
+      <p>What it costs: Coach's instructions currently forbid it from writing anything at all, so that rule gets narrowed rather than deleted. The access is already there.</p>
+      <p><strong>Best when</strong> the ruling happened in the channel and everybody watching should see the change that came out of it.</p>
+    </div>
+
+    <div class="decision">
+      <h3>Option B: Gerald makes the change for Mike</h3>
+      <span class="verdict">NO NEW HABITS · MIKE ALREADY WORKS THIS WAY</span>
+      <p>Coach spots the gap and drafts the wording. Mike tells Gerald to put it in the training camp playbook. Gerald edits and pushes. Mike is already having this exact conversation with Gerald every day about his own repo.</p>
+      <p>What it costs: Gerald needs access to the playbook folder, which is one invite. Coach stays strictly read-only, which is a cleaner line to hold.</p>
+      <p><strong>Best when</strong> the change is bigger than one paragraph, or Mike wants to think it through before it is visible to the room.</p>
+    </div>
+
+    <div class="plain">
+      <p><span class="lead">THE PART THAT DOES NOT CHANGE</span>Whichever mechanic we use, a person approves before it counts, and every change arrives marked decided-but-not-announced so approving it never accidentally announces it to the field. The mechanic is a preference. The approval is the rule.</p>
+    </div>
+
+    <h3>When a change gets proposed at all</h3>
+    <p>Narrow, or the folder fills with noise. One trigger:</p>
+    <ul class="rules">
+      <li><span class="yes">✓</span><span><strong>The owner of that area states a rule, in the channel, in response to a gap.</strong> Mike on the app. Brian on training days. Anne on people. That is it.</span></li>
+      <li><span class="no">✗</span><span>Not when somebody asks a question.</span></li>
+      <li><span class="no">✗</span><span>Not when somebody shares an opinion or an idea.</span></li>
+      <li><span class="no">✗</span><span>Not when somebody rules outside their lane. A branch manager cannot rule on company policy.</span></li>
+      <li><span class="no">✗</span><span>Never anything about a specific person, their pay, or discipline.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What else it could do</h2>
+    <p class="sub">Roughly in the order they would make the job easier.</p>
+
+    <div class="ladder">
+      <div class="rung">
+        <span class="state live">running now</span>
+        <span class="name">Answers, routes, and tags the owner on a gap</span>
+        <p>Answers from the playbook with a date, refuses what is not its business, and @-mentions whoever owns a question it cannot answer.</p>
+      </div>
+      <div class="rung">
+        <span class="state next">next, after the Mike conversation</span>
+        <span class="name">Reads the live app</span>
+        <p>Today Coach knows how the app works but not what it currently says. Connect it and "how is my branch pacing" or "who on my crew is behind" becomes a real answer instead of a link to a dashboard. Biggest one on the list, and Mike owns the connection.</p>
+      </div>
+      <div class="rung">
+        <span class="state next">next</span>
+        <span class="name">The paste step goes away</span>
+        <p>Option A, Option B, or both. Decide the mechanic with Mike.</p>
+      </div>
+      <div class="rung">
+        <span class="state next">week two</span>
+        <span class="name">A one-page cheat sheet</span>
+        <p>After a week of real questions we will know the twenty things people actually ask. Those go in one small file so most answers come back in seconds.</p>
+      </div>
+      <div class="rung">
+        <span class="state later">worth doing after</span>
+        <span class="name">Posts the gap list itself</span>
+        <p>Coach can run on a schedule. Every Monday it posts the open gaps and who owns each one. Takes the weekly sweep off Albert.</p>
+      </div>
+      <div class="rung">
+        <span class="state later">later, deliberately</span>
+        <span class="name">Drafts messages, never sends them</span>
+        <p>The coaching warning, the recap to the branch managers, the announcement. Coach writes the draft, the person whose name is on it edits and sends. This waits because outbound writing is where a mistake is most expensive.</p>
+      </div>
+      <div class="rung">
+        <span class="state later">the real prize</span>
+        <span class="name">The same thing for another subject</span>
+        <p>This whole build is a folder of documents plus one channel. Claims. Sales. Dispatch. Anything with a playbook nobody can find. If Training Camp works, the second one takes a fraction of the effort.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>For the conversation with Mike</h2>
+    <p class="sub">He has run the only real test so far and he owns the app. Four things to settle, plus what he can teach you.</p>
+
+    <h3>Show him first</h3>
+    <p>His own Monday thread, and the two files that came out of it: the new on-hold rule sitting in the decisions log marked not-yet-announced, and the gap list where his question is row one, closed. That is the whole argument in about ninety seconds.</p>
+
+    <h3>Decide together</h3>
+    <ul class="rules">
+      <li><span class="yes">1</span><span><strong>The mechanic.</strong> Coach files proposals, Gerald does it for him, or both. His preference should probably win, since he is the one who will use it most.</span></li>
+      <li><span class="yes">2</span><span><strong>The app connection.</strong> You want it. He owns it. What does it take on his side, and what is the first question it should be able to answer.</span></li>
+      <li><span class="yes">3</span><span><strong>Who else gets in the room.</strong> Right now it is the Roundtable. The branch managers are the actual audience.</span></li>
+      <li><span class="yes">4</span><span><strong>His two open items.</strong> Telling the branch managers about the on-hold rule so Coach can start quoting it, and the in-app SOP text that still says the inactivity lock is seven days when the code says five work days.</span></li>
+    </ul>
+
+    <h3>Ask him to teach you</h3>
+    <p>Mike has been running an AI agent against a real product every day for months. He knows where these things break, what a good instruction looks like, and how much babysitting they need. That is worth more than any documentation, and it is a good reason for him to be in this with you rather than a user of it.</p>
+  </section>
+
+  <section>
+    <h2>What is on you right now</h2>
+    <ul class="rules">
+      <li><span class="yes">1</span><span><strong>Post the intro.</strong> The Roundtable is already in the channel and poking at it. The draft is written in your voice and waiting.</span></li>
+      <li><span class="yes">2</span><span><strong>Mike has an invite</strong> to the playbook folder with edit access. Nothing needed from you.</span></li>
+      <li><span class="yes">3</span><span><strong>Book the Mike conversation.</strong> Everything else waits behind it.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Written by Albert, Cameron's AI Chief of Staff. Revised 9/7 pm on Cameron's read: promotion pulled out, policy ownership corrected, tagging ruled, the paste step targeted for removal. The playbook lives at <code>einsteinadmin/training-camp-kb</code>. The transcript is real and unedited except where marked with brackets. <span style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--ink-faint);">v1.1 · 2026-09-07</span></p>
+  </footer>
+
+</div>
