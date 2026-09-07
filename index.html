@@ -1,6 +1,6 @@
 <title>How Coach Works</title>
 <meta name="robots" content="noindex, nofollow">
-<!-- v1.1 2026-09-07 -->
+<!-- v1.2 2026-09-07 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap">
@@ -263,7 +263,7 @@
     <p class="kicker">TRAINING CAMP COACHES ROOM</p>
     <h1>How Coach Works</h1>
     <p class="standfirst">Coach is Claude, sitting in one Slack channel, reading <b>one folder of documents</b> that we wrote. That folder is the whole brain. Nothing else.</p>
-    <p class="byline">For Cameron · rev. 9/7/2026 pm · day two of the pilot</p>
+    <p class="byline">For Cameron and the leadership team · rev. 9/7/2026 · design ruled with Mike</p>
   </header>
 
   <section>
@@ -359,11 +359,22 @@
     <h2>When Coach doesn't know</h2>
     <p class="sub">This is the part you asked about. Here is exactly what happens, and where you go to see it.</p>
 
-    <p>Coach says <em>"that's not in the playbook yet,"</em> names the person who owns that area, and stops. It does not guess, and it does not write itself a note, because it cannot write anything.</p>
+    <p>Coach says <em>"that's not in the playbook yet."</em> Then it sorts the gap into one of two kinds, because they close in completely different ways. This split is Mike's, and it is the part of the design I had wrong.</p>
 
-    <p><strong>So I keep the note.</strong> There is now a file called <code>playbook-gaps.md</code>. I read the channel and add one row for every question Coach could not answer: what was asked, what was missing, who owns it, and whether it is closed. Mike, Brian, and Anne each read that one file to see their own backlog. Monday's injury question is the first row, already closed.</p>
+    <div class="shelf">
+      <div class="shelf-row">
+        <span class="what">A write-down gap</span><span class="who">closes in minutes</span>
+        <p class="src">The rule already exists, or the app already does the thing. Nobody wrote it down. Coach asks the owner, proposes the exact wording, and on their confirmation puts it in the playbook itself.</p>
+      </div>
+      <div class="shelf-row">
+        <span class="what">A feature request</span><span class="who">goes on a board</span>
+        <p class="src">The app genuinely cannot do it. Coach captures what was asked, and on the owner's confirmation puts one pulse in their inbox with the request, who asked, and a link to the thread. It never designs the feature.</p>
+      </div>
+    </div>
 
-    <p>I sweep the channel every morning for the first two weeks, then weekly. A thumbs down on a bad answer gets swept too.</p>
+    <p>If Coach cannot tell which kind it is, it asks one question before choosing.</p>
+
+    <p>Either way the gap gets logged in <code>playbook-gaps.md</code>, so anyone can see what is still open and who owns it. I sweep the channel on top of that to catch anything Coach missed and anything that got a thumbs down.</p>
 
     <h3>Who does Coach tag?</h3>
     <div class="plain">
@@ -405,8 +416,8 @@
       </li>
       <li>
         <div>
-          <p class="head">Somebody puts it in the folder</p>
-          <p>Today that means opening the file on GitHub and pasting. <b>This is the step we are removing</b>, see below. What never gets removed is a person approving it. <span class="who-does">a human approves, always</span></p>
+          <p class="head">Coach writes it, once somebody confirms</p>
+          <p>Coach posts the exact wording, the owner confirms in the thread, and Coach makes the change. Nobody opens GitHub. What never goes away is a person confirming first. <span class="who-does">a human confirms, always</span></p>
         </div>
       </li>
       <li>
@@ -424,38 +435,34 @@
   </section>
 
   <section>
-    <h2>Getting rid of the paste step</h2>
-    <p class="sub">Nobody should have to open GitHub and paste text to fix a sentence. Two ways out, and they are not exclusive.</p>
+    <h2>How Coach closes a gap</h2>
+    <p class="sub">Ruled 9/7 with Mike. The old version ended with somebody opening GitHub and pasting text. That step is gone.</p>
 
     <div class="decision">
-      <h3>Option A: Coach files the change itself</h3>
-      <span class="verdict">FEWEST HANDS · NEEDS ONE RULE CHANGED</span>
-      <p>Coach writes the change as a proposal that sits in the folder until somebody approves it. Mike or you tap approve from your phone. Nothing lands without that tap.</p>
-      <p>What it costs: Coach's instructions currently forbid it from writing anything at all, so that rule gets narrowed rather than deleted. The access is already there.</p>
-      <p><strong>Best when</strong> the ruling happened in the channel and everybody watching should see the change that came out of it.</p>
+      <h3>Lane 1: the write-down gap</h3>
+      <span class="verdict">COACH WRITES IT · THE OWNER CONFIRMS FIRST</span>
+      <p>Coach tags the owner and asks them the actual question. When they answer, Coach writes out <strong>the exact words</strong> it would put in the playbook, quoted, naming every file it would touch. Then it asks them to confirm.</p>
+      <p>On their confirmation, Coach makes the change itself: edits the file, logs the ruling as decided-but-not-announced, closes the gap row, and posts back what it changed. If they reword it, their wording wins.</p>
     </div>
 
     <div class="decision">
-      <h3>Option B: Gerald makes the change for Mike</h3>
-      <span class="verdict">NO NEW HABITS · MIKE ALREADY WORKS THIS WAY</span>
-      <p>Coach spots the gap and drafts the wording. Mike tells Gerald to put it in the training camp playbook. Gerald edits and pushes. Mike is already having this exact conversation with Gerald every day about his own repo.</p>
-      <p>What it costs: Gerald needs access to the playbook folder, which is one invite. Coach stays strictly read-only, which is a cleaner line to hold.</p>
-      <p><strong>Best when</strong> the change is bigger than one paragraph, or Mike wants to think it through before it is visible to the room.</p>
+      <h3>Lane 2: the feature request</h3>
+      <span class="verdict">COACH CAPTURES IT · THE OWNER CONFIRMS FIRST</span>
+      <p>Coach says plainly that the app cannot do this today, then writes back what it understood the person is asking for and invites a correction. It offers to put it on the owner's board.</p>
+      <p>On their confirmation it creates one pulse in their inbox: the request in the requester's own words, who asked and from which branch, and a link to the thread. It checks for an existing pulse first, so the same idea from three branches does not become three pulses. It leaves the date and the effort estimate empty, because those are the owner's call at triage.</p>
     </div>
+
+    <h3>The four things that keep this safe</h3>
+    <ul class="rules">
+      <li><span class="yes">1</span><span><strong>The exact text, never a summary.</strong> Approving a description of a change is not the same as approving the change. Coach pastes the real words, so yes means yes to those words.</span></li>
+      <li><span class="yes">2</span><span><strong>Only the person Coach tagged can confirm.</strong> If a branch manager says "yeah do it" on a question aimed at Mike, that does not count and Coach waits.</span></li>
+      <li><span class="yes">3</span><span><strong>Coach never designs the feature.</strong> It writes down what was asked and invites a correction. No spec, no mechanics, no effort estimate. Capturing a request, not solving it.</span></li>
+      <li><span class="yes">4</span><span><strong>No standing permission.</strong> Every write needs a fresh confirmation on that specific proposal. Approving one last week approves nothing this week.</span></li>
+    </ul>
 
     <div class="plain">
-      <p><span class="lead">THE PART THAT DOES NOT CHANGE</span>Whichever mechanic we use, a person approves before it counts, and every change arrives marked decided-but-not-announced so approving it never accidentally announces it to the field. The mechanic is a preference. The approval is the rule.</p>
+      <p><span class="lead">WHAT COACH CAN WRITE TO</span>Two places, and nothing else ever: this playbook, and a new pulse on a leader's board. It never edits another repo, never changes or closes an existing pulse, never posts in another channel, and never sends anyone a message. And everything it writes to the playbook lands marked not-yet-announced, so a rule existing is never the same thing as the field having heard it.</p>
     </div>
-
-    <h3>When a change gets proposed at all</h3>
-    <p>Narrow, or the folder fills with noise. One trigger:</p>
-    <ul class="rules">
-      <li><span class="yes">✓</span><span><strong>The owner of that area states a rule, in the channel, in response to a gap.</strong> Mike on the app. Brian on training days. Anne on people. That is it.</span></li>
-      <li><span class="no">✗</span><span>Not when somebody asks a question.</span></li>
-      <li><span class="no">✗</span><span>Not when somebody shares an opinion or an idea.</span></li>
-      <li><span class="no">✗</span><span>Not when somebody rules outside their lane. A branch manager cannot rule on company policy.</span></li>
-      <li><span class="no">✗</span><span>Never anything about a specific person, their pay, or discipline.</span></li>
-    </ul>
   </section>
 
   <section>
@@ -469,14 +476,19 @@
         <p>Answers from the playbook with a date, refuses what is not its business, and @-mentions whoever owns a question it cannot answer.</p>
       </div>
       <div class="rung">
-        <span class="state next">next, after the Mike conversation</span>
-        <span class="name">Reads the live app</span>
-        <p>Today Coach knows how the app works but not what it currently says. Connect it and "how is my branch pacing" or "who on my crew is behind" becomes a real answer instead of a link to a dashboard. Biggest one on the list, and Mike owns the connection.</p>
+        <span class="state live">ruled 9/7, live in its instructions</span>
+        <span class="name">Writes to the playbook on confirmation</span>
+        <p>Lane 1. Proposes the exact wording, the owner confirms, Coach makes the change. No more opening GitHub to paste text.</p>
       </div>
       <div class="rung">
-        <span class="state next">next</span>
-        <span class="name">The paste step goes away</span>
-        <p>Option A, Option B, or both. Decide the mechanic with Mike.</p>
+        <span class="state next">one setup step left</span>
+        <span class="name">Puts feature requests on a board</span>
+        <p>Lane 2. Needs the monday.com connector switched on for the channel, which takes a credential only Cameron can enter. Everything else is written.</p>
+      </div>
+      <div class="rung">
+        <span class="state next">next, with Mike</span>
+        <span class="name">Reads the live app</span>
+        <p>Today Coach knows how the app works but not what it currently says. Connect it and "how is my branch pacing" or "who on my crew is behind" becomes a real answer instead of a link to a dashboard. Mike owns the connection.</p>
       </div>
       <div class="rung">
         <span class="state next">week two</span>
@@ -486,51 +498,64 @@
       <div class="rung">
         <span class="state later">worth doing after</span>
         <span class="name">Posts the gap list itself</span>
-        <p>Coach can run on a schedule. Every Monday it posts the open gaps and who owns each one. Takes the weekly sweep off Albert.</p>
+        <p>Coach can run on a schedule. Every Monday it posts what is still open and who owns each one.</p>
       </div>
       <div class="rung">
         <span class="state later">later, deliberately</span>
         <span class="name">Drafts messages, never sends them</span>
         <p>The coaching warning, the recap to the branch managers, the announcement. Coach writes the draft, the person whose name is on it edits and sends. This waits because outbound writing is where a mistake is most expensive.</p>
       </div>
-      <div class="rung">
-        <span class="state later">the real prize</span>
-        <span class="name">The same thing for another subject</span>
-        <p>This whole build is a folder of documents plus one channel. Claims. Sales. Dispatch. Anything with a playbook nobody can find. If Training Camp works, the second one takes a fraction of the effort.</p>
-      </div>
     </div>
   </section>
 
   <section>
-    <h2>For the conversation with Mike</h2>
-    <p class="sub">He has run the only real test so far and he owns the app. Four things to settle, plus what he can teach you.</p>
+    <h2>How this cascades down</h2>
+    <p class="sub">The room grows in stages, and each stage has to hold before the next one starts.</p>
 
-    <h3>Show him first</h3>
-    <p>His own Monday thread, and the two files that came out of it: the new on-hold rule sitting in the decisions log marked not-yet-announced, and the gap list where his question is row one, closed. That is the whole argument in about ninety seconds.</p>
+    <ol class="loop">
+      <li>
+        <div>
+          <p class="head">Leadership, now</p>
+          <p>The Roundtable is in and has been testing it. Mike ran the only real gap so far and shaped the design that came out of it. <span class="who-does">running</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">All ten branch managers</p>
+          <p>The actual audience. They are the ones who hit questions nobody wrote down, every day. Once they approve of it, the next group goes in. <span class="who-does">next</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">Ops managers and flex managers</p>
+          <p>The layer under the branch managers, and the one most likely to be guessing at a rule rather than asking. <span class="who-does">after the BMs sign off</span></p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <p class="head">The branch channels, where the movers are</p>
+          <p>A mover asks in their own branch channel and gets the same answer their manager would get. That is the point of building it this way. <span class="who-does">the real destination</span></p>
+        </div>
+      </li>
+    </ol>
 
-    <h3>Decide together</h3>
-    <ul class="rules">
-      <li><span class="yes">1</span><span><strong>The mechanic.</strong> Coach files proposals, Gerald does it for him, or both. His preference should probably win, since he is the one who will use it most.</span></li>
-      <li><span class="yes">2</span><span><strong>The app connection.</strong> You want it. He owns it. What does it take on his side, and what is the first question it should be able to answer.</span></li>
-      <li><span class="yes">3</span><span><strong>Who else gets in the room.</strong> Right now it is the Roundtable. The branch managers are the actual audience.</span></li>
-      <li><span class="yes">4</span><span><strong>His two open items.</strong> Telling the branch managers about the on-hold rule so Coach can start quoting it, and the in-app SOP text that still says the inactivity lock is seven days when the code says five work days.</span></li>
-    </ul>
-
-    <h3>Ask him to teach you</h3>
-    <p>Mike has been running an AI agent against a real product every day for months. He knows where these things break, what a good instruction looks like, and how much babysitting they need. That is worth more than any documentation, and it is a good reason for him to be in this with you rather than a user of it.</p>
+    <div class="returns">
+      <div class="arrow" aria-hidden="true">↺</div>
+      <p>Every layer that gets added asks questions the layer above never thought to ask. Each one makes the playbook better for everyone, including the people who were already in the room.</p>
+    </div>
   </section>
 
   <section>
     <h2>What is on you right now</h2>
     <ul class="rules">
-      <li><span class="yes">1</span><span><strong>Post the intro.</strong> The Roundtable is already in the channel and poking at it. The draft is written in your voice and waiting.</span></li>
-      <li><span class="yes">2</span><span><strong>Mike has an invite</strong> to the playbook folder with edit access. Nothing needed from you.</span></li>
-      <li><span class="yes">3</span><span><strong>Book the Mike conversation.</strong> Everything else waits behind it.</span></li>
+      <li><span class="yes">1</span><span><strong>Switch on the monday.com connector</strong> for the channel. It is in the connector list already. It needs a credential, which only you can enter. That is the last thing standing between Lane 2 and working.</span></li>
+      <li><span class="yes">2</span><span><strong>Post the intro</strong> and bring the ten branch managers in. The draft is written in your voice and waiting.</span></li>
+      <li><span class="yes">3</span><span><strong>Mike has an invite</strong> to the playbook with edit access. Gerald pushes with the same login, so both routes open when he accepts.</span></li>
     </ul>
   </section>
 
   <footer>
-    <p>Written by Albert, Cameron's AI Chief of Staff. Revised 9/7 pm on Cameron's read: promotion pulled out, policy ownership corrected, tagging ruled, the paste step targeted for removal. The playbook lives at <code>einsteinadmin/training-camp-kb</code>. The transcript is real and unedited except where marked with brackets. <span style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--ink-faint);">v1.1 · 2026-09-07</span></p>
+    <p>Written by Albert, Cameron's AI Chief of Staff. Revised 9/7 with Mike: two lanes for a gap, Coach writes on confirmation, feature requests go to a board, the paste step is gone. The playbook lives at <code>einsteinadmin/training-camp-kb</code>. The transcript is real and unedited except where marked with brackets. <span style="font-family:'Roboto Mono',monospace;font-size:12px;color:var(--ink-faint);">v1.2 · 2026-09-07</span></p>
   </footer>
 
 </div>
